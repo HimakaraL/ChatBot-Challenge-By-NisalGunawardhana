@@ -10,39 +10,65 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body class="body">
-    <div class="container">
-        <div class="card mt-5">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center">
-                    <img src="{{url('./images/icon.png')}}" alt="Logo" class="mr" style="width: 40px; height: auto;">
-                    <h5 class="mb-0">Chat Bot</h5>
-                    <button class="btn justify-content-md-end" id="clearChat">
-                        <i class="ri-delete-bin-line custom-icon"></i> Clear Chat
-                    </button>
-                </div>
+    @if(session('user'))
+        <div class="upper-container">
+            <div>
+                <h2>Welcome, {{ session('user')->name }}</h2>
             </div>
-            <div class="card-body" id="chat-box" style="height: 400px; overflow-y: auto;">
-                <!-- Messages will be appended here -->
+            <div>
+                <a class="btn btn-primary ml-3 buttonUp" id="" href="/logout">Logout</a>
             </div>
-            <div id="popup-area" style="position: relative; z-index: 9999;"></div>
-            <div class="card-footer d-flex flex-column">
-                <div class="suggestions mb-2 d-flex justify-content-start">
-                    <button class="btn btn-outline-primary suggestion-btn me-2">Hi Axil Bot!</button>
-                    <button class="btn btn-outline-primary suggestion-btn me-2">Can you suggest best colors for women clothing?</button>
-                    <button class="btn btn-outline-primary suggestion-btn">Can you suggest outfits?</button>
+        </div>
+
+        <div class="container">
+            <div class="card mt-5">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <img src="{{url('./images/icon.png')}}" alt="Logo" class="mr" style="width: 40px; height: auto;">
+                        <h5 class="mb-0">Chat Bot</h5>
+                        <button class="btn justify-content-md-end" id="clearChat">
+                            <i class="ri-delete-bin-line custom-icon"></i> Clear Chat
+                        </button>
+                    </div>
                 </div>
-                <div class="d-flex align-items-center">
-                    <input type="text" class="form-control form-control-lg" id="message" placeholder="Type or say your message...">
-                    <button class="btn btn-outline-secondary ms-2" id="voiceButton">
-                        <i class="ri-mic-line fs-4"></i>
-                    </button>
-                    <button class="btn btn-primary ms-2" id="sendMessage">Send</button>
+                <div class="card-body" id="chat-box" style="height: 400px; overflow-y: auto;">
+                    <!-- Messages will be appended here -->
+                </div>
+                <div id="popup-area" style="position: relative; z-index: 9999;"></div>
+                <div class="card-footer d-flex flex-column">
+                    <div class="suggestions mb-2 d-flex justify-content-start">
+                        <button class="btn btn-outline-primary suggestion-btn me-2">Hi Axil Bot!</button>
+                        <button class="btn btn-outline-primary suggestion-btn me-2">Can you suggest best colors for women clothing?</button>
+                        <button class="btn btn-outline-primary suggestion-btn">Can you suggest outfits?</button>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <input type="text" class="form-control form-control-lg mr-2" id="message" placeholder="Type or say your message...">
+                        <button class="btn btn-outline-secondary mr-2" id="voiceButton">
+                            <i class="ri-mic-line fs-4"></i>
+                        </button>
+                        <a href="/getResponse"><button class="btn btn-primary ms-2" id="sendMessage">Send</button><a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
 
+    @else
+    <div class="upper-container">
+        <div>
+            <a class="btn btn-success mr-3 buttonUp" id="" href="/login">Login</a>
+        </div>
+        <div>
+            <a class="btn btn-primary buttonUp" href="/signup">Signup</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card mt-5 shadow p-4 body">
+            <h1 class="text-center">Welcome to Chat Bot</h1>
+        </div>
+    </div>
+    @endif
+    
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -195,6 +221,17 @@
 
         .close-popup {
             cursor: pointer;
+        }
+
+        .upper-container {
+            display: flex;
+            justify-content: end;
+            padding: 10px;
+            background-color: #f87e5f;
+        }
+
+        .buttonUp {
+            width: 80px;
         }
     </style>
     <footer>
