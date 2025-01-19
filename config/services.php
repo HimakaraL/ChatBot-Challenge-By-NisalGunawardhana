@@ -35,9 +35,11 @@ return [
         ],
     ],
 
+    //uncomment this code
+    
     'openai' => [
-        'api_url' => env('AZURE_BOT_API_URL'),
-        'api_key' => env('AZURE_BOT_API_KEY'),
+         'api_url' => env('AZURE_BOT_API_URL'),
+         'api_key' => env('AZURE_BOT_API_KEY'),
     ],
 
 ];

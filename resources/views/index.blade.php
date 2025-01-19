@@ -46,7 +46,7 @@
                         <button class="btn btn-outline-secondary mr-2" id="voiceButton">
                             <i class="ri-mic-line fs-4"></i>
                         </button>
-                        <a href="/getResponse"><button class="btn btn-primary ms-2" id="sendMessage">Send</button><a>
+                        <button class="btn btn-primary ms-2" id="sendMessage">Send</button>
                     </div>
                 </div>
             </div>
